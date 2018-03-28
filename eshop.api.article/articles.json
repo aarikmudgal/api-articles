@@ -4,13 +4,15 @@
       "ArticleId": "1",
       "ArticleName": "Article1",
       "ArticleDescription": "GoodDay Biscuit",
-      "ArticlePrice": "5.5"
+      "ArticlePrice": "5.5",
+      "ArticleImageUrl": ""
     },
     {
       "ArticleId": "2",
       "ArticleName": "Article2",
       "ArticleDescription": "Parle Biscuit",
-      "ArticlePrice": "6.5"
+      "ArticlePrice": "6.5",
+      "ArticleImageUrl": ""
     }
   ]
 }
