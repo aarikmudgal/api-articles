@@ -19,7 +19,7 @@ namespace eshop.api.article.Controllers
 
         private static void LoadArticleFromFile()
         {
-            articles = new List<Article>(JsonConvert.DeserializeObject<ArticleModel>(System.IO.File.ReadAllText(@"articles.json")).Articles);
+            articles = new List<Article>(JsonConvert.DeserializeObject<List<Article>>(System.IO.File.ReadAllText(@"articles.json")));
         }
 
         private void WriteToFile()
@@ -53,15 +53,14 @@ namespace eshop.api.article.Controllers
 
         // GET api/articles/5
         [HttpGet("{id}")]
-        public IActionResult GetArticleById(string id)
+        public IActionResult GetArticleById(int id)
         {
-            foreach (Article article in articles)
+            Article article = articles.Find(a => a.ArticleId == id);
+            if(article != null)
             {
-                if (article.ArticleId == id)
-                {
-                    return new ObjectResult(article);
-                }
+                return new ObjectResult(article);
             }
+            
             return NotFound($"Article with Id - {id} not found");
         }
 
@@ -75,7 +74,7 @@ namespace eshop.api.article.Controllers
                 // create new customer object
                 Article art = JsonConvert.DeserializeObject<Article>(value.ToString());
                 int.TryParse(articles.Count.ToString(), out maxArticleId);
-                art.ArticleId = (maxArticleId + 1).ToString();
+                art.ArticleId = maxArticleId + 1;
 
                 // add new customer to list
                 articles.Add(art);
@@ -92,13 +91,19 @@ namespace eshop.api.article.Controllers
 
         // PUT api/articles/5
         [HttpPut("{id}")]
-        public IActionResult ChangeArticle(string id, [FromBody]JObject value)
+        public IActionResult UpdateArticle(int id, [FromBody]JObject value)
         {
             try
             {
-                int index = articles.IndexOf(articles.Find(x => x.ArticleId == id));
-                articles.Remove(articles.Find(x => x.ArticleId == id));
-                articles.Insert(index, JsonConvert.DeserializeObject<Article>(value.ToString()));
+                Article inputArticle = JsonConvert.DeserializeObject<Article>(value.ToString());
+
+                Article article = articles.Find(a => a.ArticleId == id);
+                if(article == null)
+                {
+                    return NotFound($"Article with id - {id} not found");
+                }
+
+                article.DeepCopy(inputArticle);
                 WriteToFile();
             }
             catch (System.Exception ex)
@@ -111,11 +116,16 @@ namespace eshop.api.article.Controllers
 
         // DELETE api/articles/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteArticle(string id)
+        public IActionResult DeleteArticle(int id)
         {
             try
             {
-                articles.Remove(articles.Find(x => x.ArticleId == id));
+                Article article = articles.Find(x => x.ArticleId == id);
+                if(article == null)
+                {
+                    return NotFound($"Article with id - {id} not found");
+                }
+                articles.Remove(article);
                 WriteToFile();
             }
             catch (System.Exception ex)

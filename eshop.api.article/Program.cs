@@ -12,7 +12,7 @@ namespace eshop.api.article
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://*:8080")
+                .UseUrls("http://*:8002")
                 .UseStartup<Startup>()
                 .Build();
     }
