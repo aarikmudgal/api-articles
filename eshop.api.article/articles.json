@@ -1,72 +1,72 @@
 [
   {
     "ArticleId": 1,
-    "ArticleName": "Article1",
-    "ArticleDescription": "GoodDay Biscuit",
-    "ArticlePrice": 1.5,
+    "ArticleName": "Britannia GoodDay",
+    "ArticleDescription": "By Britannia",
+    "ArticlePrice": 2.5,
     "ArticleImageUrl": "https://5.imimg.com/data5/RB/VI/MY-37487434/britania-good-day-biscuit-mrp-5-500x500.jpg"
   },
   {
     "ArticleId": 2,
-    "ArticleName": "Article2",
-    "ArticleDescription": "Parle G Biscuit",
-    "ArticlePrice": 0.5,
+    "ArticleName": "Parle G",
+    "ArticleDescription": "By Parle",
+    "ArticlePrice": 3.5,
     "ArticleImageUrl": "https://images-na.ssl-images-amazon.com/images/I/713E9a1Q29L._SY355_.jpg"
   },
   {
     "ArticleId": 3,
-    "ArticleName": "Article3",
-    "ArticleDescription": "Cadbury Silk",
-    "ArticlePrice": 3,
+    "ArticleName": "Cadbury Silk",
+    "ArticleDescription": "By Cadbury",
+    "ArticlePrice": 2.5,
     "ArticleImageUrl": "https://media1.giftease.com/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/C/a/Cadbury_Dairymilk_Silk_Fruit_And_Nut_160_gm_714889.jpg"
   },
   {
     "ArticleId": 4,
-    "ArticleName": "Article4",
-    "ArticleDescription": "Maggi Atta Noodles",
-    "ArticlePrice": 4,
+    "ArticleName": "Maggi Atta Noodles",
+    "ArticleDescription": "By Nestle",
+    "ArticlePrice": 3.5,
     "ArticleImageUrl": "https://5.imimg.com/data5/JK/YP/MY-8033205/maggi-atta-noodles-500x500.jpg"
   },
   {
     "ArticleId": 5,
-    "ArticleName": "Article5",
-    "ArticleDescription": "Roohafza",
-    "ArticlePrice": 4.25,
+    "ArticleName": "Roohafza",
+    "ArticleDescription": "By Hindustan Unilever",
+    "ArticlePrice": 2.5,
     "ArticleImageUrl": "https://fitnesspell.com/wp-content/uploads/2016/03/image-roohafza.jpg"
   },
   {
     "ArticleId": 6,
-    "ArticleName": "Article6",
-    "ArticleDescription": "Amul Cool Chocolate Milk",
-    "ArticlePrice": 4,
+    "ArticleName": "Amul Cool Chocolate Milk",
+    "ArticleDescription": "By Amul",
+    "ArticlePrice": 3.5,
     "ArticleImageUrl": "http://pricejet.in/media/catalog/product/cache/1/image/500x/9df78eab33525d08d6e5fb8d27136e95/1/4/14307387891177_amul_kool_kokojpg.jpg"
   },
   {
     "ArticleId": 7,
-    "ArticleName": "Article7",
-    "ArticleDescription": "Haldirams Aloo Lachha",
-    "ArticlePrice": 2.25,
+    "ArticleName": "Haldirams Aloo Lachha",
+    "ArticleDescription": "By Haldiram",
+    "ArticlePrice": 2.5,
     "ArticleImageUrl": "https://5.imimg.com/data5/CC/CC/GLADMIN-/aloo-lachha-500x500.jpg"
   },
   {
     "ArticleId": 8,
-    "ArticleName": "Article8",
-    "ArticleDescription": "Red Bull",
-    "ArticlePrice": 10,
+    "ArticleName": "Red Bull Energy Drink",
+    "ArticleDescription": "By Red Bull",
+    "ArticlePrice": 3.5,
     "ArticleImageUrl": "https://images-na.ssl-images-amazon.com/images/I/71Jas3Z5zaL._SX425_.jpg"
   },
   {
     "ArticleId": 9,
-    "ArticleName": "Article9",
-    "ArticleDescription": "Nestle Classico",
-    "ArticlePrice": 8.5,
+    "ArticleName": "Nestle Classico",
+    "ArticleDescription": "By Nestle",
+    "ArticlePrice": 2.5,
     "ArticleImageUrl": "https://images-na.ssl-images-amazon.com/images/I/91waMDBVveL._SY679_.jpg"
   },
   {
     "ArticleId": 10,
-    "ArticleName": "Article10",
-    "ArticleDescription": "Heinz Mayonnaise",
-    "ArticlePrice": 8.5,
+    "ArticleName": "Heinz Mayonnaise",
+    "ArticleDescription": "By Heinz",
+    "ArticlePrice": 3.5,
     "ArticleImageUrl": "https://groceries.morrisons.com/productImages/360/360806011_0_640x640.jpg?identifier=0582fad4b51a949ac249ed10f00769ac"
   }
 ]
