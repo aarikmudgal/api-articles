@@ -1,72 +1,72 @@
 [
   {
-    "ArticleId": 1,
-    "ArticleName": "Britannia GoodDay",
-    "ArticleDescription": "By Britannia",
-    "ArticlePrice": 2.5,
-    "ArticleImageUrl": "https://5.imimg.com/data5/RB/VI/MY-37487434/britania-good-day-biscuit-mrp-5-500x500.jpg"
+    "articleId": 1,
+    "articleName": "Britannia GoodDay",
+    "articleDescription": "By Britannia",
+    "articlePrice": 2.5,
+    "articleImageUrl": "images/britania.jpg"
   },
   {
-    "ArticleId": 2,
-    "ArticleName": "Parle G",
-    "ArticleDescription": "By Parle",
-    "ArticlePrice": 3.5,
-    "ArticleImageUrl": "https://images-na.ssl-images-amazon.com/images/I/713E9a1Q29L._SY355_.jpg"
+    "articleId": 2,
+    "articleName": "Parle G",
+    "articleDescription": "By Parle",
+    "articlePrice": 3.5,
+    "articleImageUrl": "images/parleg.jpg"
   },
   {
-    "ArticleId": 3,
-    "ArticleName": "Cadbury Silk",
-    "ArticleDescription": "By Cadbury",
-    "ArticlePrice": 2.5,
-    "ArticleImageUrl": "https://media1.giftease.com/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/C/a/Cadbury_Dairymilk_Silk_Fruit_And_Nut_160_gm_714889.jpg"
+    "articleId": 3,
+    "articleName": "Cadbury Silk",
+    "articleDescription": "By Cadbury",
+    "articlePrice": 2.5,
+    "articleImageUrl": "images/cadburysilk.jpg"
   },
   {
-    "ArticleId": 4,
-    "ArticleName": "Maggi Atta Noodles",
-    "ArticleDescription": "By Nestle",
-    "ArticlePrice": 3.5,
-    "ArticleImageUrl": "https://5.imimg.com/data5/JK/YP/MY-8033205/maggi-atta-noodles-500x500.jpg"
+    "articleId": 4,
+    "articleName": "Maggi Atta Noodles",
+    "articleDescription": "By Nestle",
+    "articlePrice": 3.5,
+    "articleImageUrl": "images/maggi.jpg"
   },
   {
-    "ArticleId": 5,
-    "ArticleName": "Roohafza",
-    "ArticleDescription": "By Hindustan Unilever",
-    "ArticlePrice": 2.5,
-    "ArticleImageUrl": "https://fitnesspell.com/wp-content/uploads/2016/03/image-roohafza.jpg"
+    "articleId": 5,
+    "articleName": "Roohafza",
+    "articleDescription": "By Hindustan Unilever",
+    "articlePrice": 2.5,
+    "articleImageUrl": "images/roohafza.jpg"
   },
   {
-    "ArticleId": 6,
-    "ArticleName": "Amul Cool Chocolate Milk",
-    "ArticleDescription": "By Amul",
-    "ArticlePrice": 3.5,
-    "ArticleImageUrl": "http://pricejet.in/media/catalog/product/cache/1/image/500x/9df78eab33525d08d6e5fb8d27136e95/1/4/14307387891177_amul_kool_kokojpg.jpg"
+    "articleId": 6,
+    "articleName": "Amul Cool Chocolate Milk",
+    "articleDescription": "By Amul",
+    "articlePrice": 3.5,
+    "articleImageUrl": "images/amul_kool.jpg"
   },
   {
-    "ArticleId": 7,
-    "ArticleName": "Haldirams Aloo Lachha",
-    "ArticleDescription": "By Haldiram",
-    "ArticlePrice": 2.5,
-    "ArticleImageUrl": "https://5.imimg.com/data5/CC/CC/GLADMIN-/aloo-lachha-500x500.jpg"
+    "articleId": 7,
+    "articleName": "Haldirams Aloo Lachha",
+    "articleDescription": "By Haldiram",
+    "articlePrice": 2.5,
+    "articleImageUrl": "images/aloo-lachha.jpg"
   },
   {
-    "ArticleId": 8,
-    "ArticleName": "Red Bull Energy Drink",
-    "ArticleDescription": "By Red Bull",
-    "ArticlePrice": 3.5,
-    "ArticleImageUrl": "https://images-na.ssl-images-amazon.com/images/I/71Jas3Z5zaL._SX425_.jpg"
+    "articleId": 8,
+    "articleName": "Red Bull Energy Drink",
+    "articleDescription": "By Red Bull",
+    "articlePrice": 3.5,
+    "articleImageUrl": "images/red_bull.jpg"
   },
   {
-    "ArticleId": 9,
-    "ArticleName": "Nestle Classico",
-    "ArticleDescription": "By Nestle",
-    "ArticlePrice": 2.5,
-    "ArticleImageUrl": "https://images-na.ssl-images-amazon.com/images/I/91waMDBVveL._SY679_.jpg"
+    "articleId": 9,
+    "articleName": "Nestle Classico",
+    "articleDescription": "By Nestle",
+    "articlePrice": 2.5,
+    "articleImageUrl": "images/nescafe.jpg"
   },
   {
-    "ArticleId": 10,
-    "ArticleName": "Heinz Mayonnaise",
-    "ArticleDescription": "By Heinz",
-    "ArticlePrice": 3.5,
-    "ArticleImageUrl": "https://groceries.morrisons.com/productImages/360/360806011_0_640x640.jpg?identifier=0582fad4b51a949ac249ed10f00769ac"
+    "articleId": 10,
+    "articleName": "Heinz Mayonnaise",
+    "articleDescription": "By Heinz",
+    "articlePrice": 3.5,
+    "articleImageUrl": "images/heinz_mayo.jpg"
   }
 ]

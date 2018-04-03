@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using eshop.api.article.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,13 @@ namespace eshop.api.article.Controllers
             {
                 throw;
             }
+        }
+        [HttpGet]
+        [Route("images/{imageName}")]
+        public IActionResult Get(string imageName)
+        {
+            Byte[] b = System.IO.File.ReadAllBytes(@"images/"+imageName);   // You can use your own method over here.         
+            return File(b, "image/jpg");
         }
 
         // GET api/articles/health
