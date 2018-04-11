@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +19,8 @@ namespace eshop.api.article
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddEntityFrameworkNpgsql().AddDbContext<eshop.api.article.dal.DBContext.ArticleContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("ArticleConnection")));
+            //services.Configure<eshop.api.article.Models.AppSettings> _configuration.GetSection("AppSettings");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,9 +30,6 @@ namespace eshop.api.article
             {
                 app.UseDeveloperExceptionPage();
             }
-            
-            // Shows UseCors with CorsPolicyBuilder.
-            app.UseCors(builder => builder.WithOrigins("http://35.200.233.17").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseMvc();
         }

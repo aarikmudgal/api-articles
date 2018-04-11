@@ -1,72 +1,16 @@
-[
-  {
-    "articleId": 1,
-    "articleName": "Britannia GoodDay",
-    "articleDescription": "By Britannia",
-    "articlePrice": 2.5,
-    "articleImageUrl": "images/britania.jpg"
-  },
-  {
-    "articleId": 2,
-    "articleName": "Parle G",
-    "articleDescription": "By Parle",
-    "articlePrice": 3.5,
-    "articleImageUrl": "images/parleg.jpg"
-  },
-  {
-    "articleId": 3,
-    "articleName": "Cadbury Silk",
-    "articleDescription": "By Cadbury",
-    "articlePrice": 2.5,
-    "articleImageUrl": "images/cadburysilk.jpg"
-  },
-  {
-    "articleId": 4,
-    "articleName": "Maggi Atta Noodles",
-    "articleDescription": "By Nestle",
-    "articlePrice": 3.5,
-    "articleImageUrl": "images/maggi.jpg"
-  },
-  {
-    "articleId": 5,
-    "articleName": "Roohafza",
-    "articleDescription": "By Hindustan Unilever",
-    "articlePrice": 2.5,
-    "articleImageUrl": "images/roohafza.jpg"
-  },
-  {
-    "articleId": 6,
-    "articleName": "Amul Cool Chocolate Milk",
-    "articleDescription": "By Amul",
-    "articlePrice": 3.5,
-    "articleImageUrl": "images/amul_kool.jpg"
-  },
-  {
-    "articleId": 7,
-    "articleName": "Haldirams Aloo Lachha",
-    "articleDescription": "By Haldiram",
-    "articlePrice": 2.5,
-    "articleImageUrl": "images/aloo-lachha.jpg"
-  },
-  {
-    "articleId": 8,
-    "articleName": "Red Bull Energy Drink",
-    "articleDescription": "By Red Bull",
-    "articlePrice": 3.5,
-    "articleImageUrl": "images/red_bull.jpg"
-  },
-  {
-    "articleId": 9,
-    "articleName": "Nestle Classico",
-    "articleDescription": "By Nestle",
-    "articlePrice": 2.5,
-    "articleImageUrl": "images/nescafe.jpg"
-  },
-  {
-    "articleId": 10,
-    "articleName": "Heinz Mayonnaise",
-    "articleDescription": "By Heinz",
-    "articlePrice": 3.5,
-    "articleImageUrl": "images/heinz_mayo.jpg"
-  }
-]
+{
+  "Articles": [
+    {
+      "ArticleId": "1",
+      "ArticleName": "Article1",
+      "ArticleDescription": "GoodDay Biscuit",
+      "ArticlePrice": "5.5"
+    },
+    {
+      "ArticleId": "2",
+      "ArticleName": "Article2",
+      "ArticleDescription": "Parle Biscuit",
+      "ArticlePrice": "6.5"
+    }
+  ]
+}

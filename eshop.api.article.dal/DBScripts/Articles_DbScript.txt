@@ -1,0 +1,21 @@
+-- Table: public."Articles"
+
+-- DROP TABLE public."Articles";
+
+CREATE TABLE public."Articles"
+(
+    "ArticleId" int NOT NULL,
+    "ArticleDescription" text COLLATE pg_catalog."default",
+    "ArticleName" text COLLATE pg_catalog."default",
+    "ArticlePrice" real ,
+	"ArticleImageUrl" text COLLATE pg_catalog."default",
+    CONSTRAINT "PK_Articles" PRIMARY KEY ("ArticleId")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Articles"
+    OWNER to "postgres";
+-----------------------------------------
