@@ -1,4 +1,4 @@
-FROM microsoft/dotnet
+FROM microsoft/dotnet:2.1-sdk
 RUN mkdir /app && cd /app
 WORKDIR /app
 COPY *.csproj /app
