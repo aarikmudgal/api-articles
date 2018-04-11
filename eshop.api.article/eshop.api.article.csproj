@@ -3,19 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-
+ 
   <ItemGroup>
-    <Compile Remove="Controllers\ValuesController.cs" />
-    <Compile Remove="Models\Article.cs" />
-    <Compile Remove="Models\ArticleContext.cs" />
-    <Compile Remove="Models\ArticleFileService.cs" />
-    <Compile Remove="Models\ArticleModel.cs" />
-    <Compile Remove="Models\ArticlesDBService.cs" />
-    <Compile Remove="Models\IArticleService.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
