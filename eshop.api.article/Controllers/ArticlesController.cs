@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,24 +70,20 @@ namespace eshop.api.article.Controllers
         [Route("health")]
         public IActionResult GetHealth(string health)
         {
-            //bool fileExists = System.IO.File.Exists("./customers.json");
             bool dbConnOk = false;
             string statusMessage = string.Empty;
             try
             {
-                if (_context.CheckConnection())
-                {
-                    dbConnOk = true;
-                    statusMessage = "Article Service is Healthy";
-                }
+                _context.CheckConnection(out dbConnOk);
+                statusMessage = $"Order service is Healthy";
 
             }
             catch (Exception ex)
             {
-                statusMessage = $"Articles database not available - {ex.Message}";
+                statusMessage = $"Order database or service not available - {ex.Message}";
 
             }
-            IActionResult response = dbConnOk ? Ok("Article Service is Healthy") : StatusCode(500, "Articles database not available");
+            IActionResult response = dbConnOk ? Ok(statusMessage) : StatusCode(500, statusMessage);
             return response;
         }
 
@@ -225,5 +221,3 @@ namespace eshop.api.article.Controllers
 
     }
 }
-
-//{"articleId":"3","articleName":"Biscuit","articleDescription":"ArticleDB","articlePrice":"6.5"}
