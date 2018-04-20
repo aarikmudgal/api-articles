@@ -5,12 +5,15 @@ using eshop.api.article.dal.DBContext;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace eshop.api.article.dal.Services
 {
     public class ArticlesDBService : IArticleService
     {
         private readonly ArticleContext _context;
+        private readonly string _inventoryEndPoint = "http://10.3.245.113:8004/api/inventory";
 
         public ArticlesDBService(ArticleContext context)
         {
@@ -30,11 +33,20 @@ namespace eshop.api.article.dal.Services
                 throw;
             }
         }
-        public IEnumerable<Article> GetArticles()
+        public async Task<IList<ArticleWithStatus>> GetArticlesAsync()
         {
             try
             {
-                return _context.Articles;
+                var task = _context.Articles.ToListAsync();
+
+                // get inventory and update articles with IN STOCK/ OUT OF STOCK status
+                var inventory = await GetInventoryAsycn();
+
+                var articles = await task;
+
+                var updatedArticleList = UpdateArticleStockStatus(inventory, articles);
+
+                return updatedArticleList;
             }
             catch (Exception e)
             {
@@ -42,11 +54,68 @@ namespace eshop.api.article.dal.Services
             }
             
         }
-        public Article GetArticle(int id)
+
+        private List<ArticleWithStatus> UpdateArticleStockStatus(IList<ArticleStock> inventory, List<Article> articles)
+        {
+            List<ArticleWithStatus> articleListWithStatus = new List<ArticleWithStatus>();
+            foreach (var item in articles)
+            {
+                ArticleWithStatus articleWithStatus = new ArticleWithStatus()
+                {
+                    ArticleId = item.ArticleId,
+                    ArticleDescription = item.ArticleDescription,
+                    ArticleName = item.ArticleName,
+                    ArticlePrice = item.ArticlePrice,
+                    ArticleImageUrl = item.ArticleImageUrl
+                };
+                var article = inventory == null ? null : inventory.ToList().Find(a => a.ArticleId == item.ArticleId);
+                if (article == null)
+                {
+                    // Article not found in inventory
+                    articleWithStatus.ArticleStockStatus = "UNKNOWN";
+                }
+                else
+                {
+                    string stockStatus = article.TotalQuantity > 0 ? "IN STOCK" : "OUT OF STOCK";
+                    //articleStatus.ArticleStockStatus = stockStatus;
+                    articleWithStatus.ArticleStockStatus = stockStatus;
+                }
+                articleListWithStatus.Add(articleWithStatus);
+
+
+            }
+            return articleListWithStatus;
+        }
+
+        private async Task<IList<ArticleStock>> GetInventoryAsycn()
+        {
+            IList<ArticleStock> inventory = null;
+            try
+            {
+                string url = _inventoryEndPoint;
+                HttpClient client = new HttpClient();
+
+                HttpResponseMessage response = await client.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    inventory = await response.Content.ReadAsAsync<IList<ArticleStock>>();
+                }
+                return inventory;
+            }
+            catch (Exception)
+            {
+                //throw;
+                // inventory service is down
+                return inventory;
+            }
+           
+            
+        }
+        public async Task<Article> GetArticleAsync(int id)
         {
             try
             {
-                return _context.Articles.SingleOrDefault(m => m.ArticleId == id);
+                return await _context.Articles.SingleOrDefaultAsync(m => m.ArticleId == id);
             }
             catch (Exception e)
             {
@@ -54,74 +123,86 @@ namespace eshop.api.article.dal.Services
             }
             
         }
-        public bool UpdateArticle(int id, Article article, out Article updatedArticle, out string statusMessage)
+        public async Task<ReturnResult> UpdateArticleAsync(int id, Article article)
         {
             _context.Entry(article).State = EntityState.Modified;
 
-
+            ReturnResult result = new ReturnResult();
             try
             {
                 if (!ArticleExists(id))
                 {
-                    updatedArticle = null;
-                    statusMessage = $"The Article ID {id} does not exist.";
+                    result.UpdatedArticle = null;
+                    result.StatusMessage = $"The Article ID {id} does not exist.";
+                    return result;
                 }
 
-                //byte[] bytes = Encoding.UTF8.GetBytes(article.Password);
-                //string encodedPassword = Convert.ToBase64String(bytes);
-                //article.Password = encodedPassword;
-
-                _context.SaveChanges();
-                statusMessage = $"Article details updated successfully for customer Id - {id}";
-                updatedArticle = article;
-                return true;
+                int status = await _context.SaveChangesAsync();
+                result.StatusMessage = $"Article details updated successfully for customer Id - {id}";
+                result.UpdatedArticle = article;
+                return result;
             }
             catch (DbUpdateConcurrencyException e)
             {
-                statusMessage = e.Message;
+                result.UpdatedArticle = null;
+                result.StatusMessage = e.Message;
                 throw e;
             }
         }
-        public bool InsertArticle(Article article, out Article addedArticle, out string statusMessage)
+        public async Task<ReturnResult> InsertArticleAsync(Article article)
         {
+            ReturnResult result = new ReturnResult()
+            {
+                StatusMessage = "",
+                UpdatedArticle = null
+            };
             try
             {
-                //article.ArticleId = Guid.NewGuid().ToString();
-
-                _context.Articles.Add(article);
-                int status = _context.SaveChanges();
-                addedArticle = article;
-                statusMessage = "New Article added successfully";
-                return true;
+                await _context.Articles.AddAsync(article);
+                int saved = await _context.SaveChangesAsync();
+                if (saved > 0)
+                {
+                    result.UpdatedArticle = article;
+                    result.StatusMessage = "New Article added successfully";
+                }
+                else
+                {
+                    result.StatusMessage = "Issue while Article add !";
+                }
+                return result;
             }
             catch (Exception)
             {
-                //statusMessage = e.Message;
-                addedArticle = null;
                 throw;
             }
         }
-        public bool DeleteArticle(int id, out Article deletedArticle, out string statusMessage)
+        public async Task<ReturnResult> DeleteArticleAsync(int id)
         {
+            ReturnResult result = new ReturnResult();
             try
             {
-                var article = _context.Articles.SingleOrDefault(m => m.ArticleId == id);
+                var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleId == id);
                 if (article == null)
                 {
-                    deletedArticle = null;
-                    statusMessage = $"Article with id - {id} not found";
-                    return false;
+                    result.UpdatedArticle = null;
+                    result.StatusMessage = $"Article with id - {id} not found";
+                    return result;
                 }
                 _context.Articles.Remove(article);
-                _context.SaveChanges();
-                deletedArticle = article;
-                statusMessage = $"Article with id - {id} deleted successfully";
-                return true;
+                int deleted = await _context.SaveChangesAsync();
+                if (deleted > 0)
+                {
+                    result.UpdatedArticle = article;
+                    result.StatusMessage = $"Article with id - {id} deleted successfully";
+                }
+                else
+                {
+                    throw new Exception($"Some issue with delete of Article with id - {id}");
+                }
+                return result;
             }
             catch (Exception e)
             {
-                statusMessage = e.Message;
-                deletedArticle = null;
                 throw e;
             }
         }

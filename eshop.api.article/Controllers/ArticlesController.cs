@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,10 +30,6 @@ namespace eshop.api.article.Controllers
             {
                 articleService = new ArticlesDBService(_context);
             }
-            //else
-            //{
-            //    articleService = new ArticleFileService();
-            //}
             
         }
 
@@ -89,11 +85,12 @@ namespace eshop.api.article.Controllers
 
         // GET: api/Articles
         [HttpGet]
-        public IActionResult GetArticles()
+        public async Task<IActionResult> GetArticles()
         {
             try
             {
-                return new ObjectResult(articleService.GetArticles());
+                var articles = await articleService.GetArticlesAsync();
+                return Ok(articles);
             }
             catch (Exception ex)
             {
@@ -104,14 +101,14 @@ namespace eshop.api.article.Controllers
 
         // GET: api/Articles/5
         [HttpGet("{id}")]
-        public IActionResult GetArticle([FromRoute] int id)
+        public async Task<IActionResult> GetArticle([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var article = articleService.GetArticle(id);
+            var article = await articleService.GetArticleAsync(id);
 
             if (article == null)
             {
@@ -123,10 +120,8 @@ namespace eshop.api.article.Controllers
 
         // PUT: api/Articles/5
         [HttpPut("{id}")]
-        public IActionResult PutArticle([FromRoute] int id, [FromBody] Article article)
+        public async Task<IActionResult> PutArticle([FromRoute] int id, [FromBody] Article article)
         {
-            string statusMessage;
-            Article updatedArticle;
 
             if (!ModelState.IsValid)
             {
@@ -139,15 +134,15 @@ namespace eshop.api.article.Controllers
             }
             try
             {
-                bool status = articleService.UpdateArticle(id, article, out updatedArticle, out statusMessage);
-                if (updatedArticle == null)
+                ReturnResult result = await articleService.UpdateArticleAsync(id, article);
+                if (result.UpdatedArticle == null)
                 {
                     return NotFound($"Article with id {id} not found");
                 }
                 JObject successobj = new JObject()
                 {
-                    { "StatusMessage", statusMessage },
-                    { "Customer", JObject.Parse(JsonConvert.SerializeObject(updatedArticle)) }
+                    { "StatusMessage", result.StatusMessage },
+                    { "Customer", JObject.Parse(JsonConvert.SerializeObject(result.UpdatedArticle)) }
                 };
                 return Ok(successobj);
             }
@@ -160,10 +155,8 @@ namespace eshop.api.article.Controllers
 
         // POST: api/Articles
         [HttpPost]
-        public IActionResult PostArticle([FromBody] Article article)
+        public async Task<IActionResult> PostArticle([FromBody] Article article)
         {
-            Article addedArticle;
-            string statusMessage;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -171,44 +164,47 @@ namespace eshop.api.article.Controllers
 
             try
             {
-                articleService.InsertArticle(article, out addedArticle, out statusMessage);
-                JObject successobj = new JObject()
+                ReturnResult result = await articleService.InsertArticleAsync(article);
+                if (result.UpdatedArticle != null)
                 {
-                    { "StatusMessage", statusMessage },
-                    { "Customer", JObject.Parse(JsonConvert.SerializeObject(addedArticle)) }
-                };
-                return Ok(successobj);
+                    JObject successobj = new JObject()
+                    {
+                        { "StatusMessage", result.StatusMessage },
+                        { "Customer", JObject.Parse(JsonConvert.SerializeObject(result.UpdatedArticle)) }
+                    };
+                    return Ok(successobj);
+                }
+                else
+                {
+                    return StatusCode(500, result.StatusMessage);
+                }
+                
             }
             catch (Exception ex)
             {
-
                 return StatusCode(500, ex.Message + " Inner Exception- " + ex.InnerException.Message);
             }
         }
 
         // DELETE: api/Articles/5
-        //public async Task<IActionResult> DeleteArticle([FromRoute] string id)
         [HttpDelete("{id}")]
-        public IActionResult DeleteArticle([FromRoute] int id)
+        public async Task<IActionResult> DeleteArticleAsync([FromRoute] int id)
         {
-            Article deletedArticle;
-            string statusMessage;
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             try
             {
-                var status = articleService.DeleteArticle(id, out deletedArticle, out statusMessage);
-                if (deletedArticle == null)
+                var result = await articleService.DeleteArticleAsync(id);
+                if (result.UpdatedArticle == null)
                 {
                     return NotFound($"Article with id {id} not found");
                 }
                 JObject successobj = new JObject()
                 {
-                    { "StatusMessage", statusMessage },
-                    { "Customer", JObject.Parse(JsonConvert.SerializeObject(deletedArticle)) }
+                    { "StatusMessage", result.StatusMessage },
+                    { "Customer", JObject.Parse(JsonConvert.SerializeObject(result.UpdatedArticle)) }
                 };
                 return Ok(successobj);
 

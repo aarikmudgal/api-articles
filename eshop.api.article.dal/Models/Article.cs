@@ -9,4 +9,9 @@ namespace eshop.api.article.dal.Models
         public double ArticlePrice { get; set; }
         public string ArticleImageUrl { get; set; }
     }
+
+    public class ArticleWithStatus : Article
+    {
+        public string ArticleStockStatus { get; set; }
+    }
 }
