@@ -13,7 +13,7 @@ namespace eshop.api.article.dal.Services
     public class ArticlesDBService : IArticleService
     {
         private readonly ArticleContext _context;
-        private readonly string _inventoryEndPoint = "http://10.3.245.113:8004/api/inventory";
+        private readonly string _inventoryEndPoint = "http://10.27.245.110/api/inventory";
 
         public ArticlesDBService(ArticleContext context)
         {
