@@ -76,7 +76,7 @@ namespace eshop.api.article.dal.Services
                 }
                 else
                 {
-                    string stockStatus = article.TotalQuantity > 0 ? "IN STOCK" : "OUT OF STOCK";
+                    string stockStatus = article.TotalQuantity > 0 ? $"IN STOCK ({article.TotalQuantity})" : "OUT OF STOCK";
                     //articleStatus.ArticleStockStatus = stockStatus;
                     articleWithStatus.ArticleStockStatus = stockStatus;
                 }
